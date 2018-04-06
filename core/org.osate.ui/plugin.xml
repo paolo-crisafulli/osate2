@@ -1009,4 +1009,17 @@
             type="org.eclipse.xtext.ui.editor.outline.impl.EObjectNode">
        </propertyTester>
     </extension>
+    <extension
+          point="org.eclipse.ui.exportWizards">
+       <category
+             id="org.osate.ui.wizards.export"
+             name="AADL">
+       </category>
+       <wizard
+             category="org.osate.ui.wizards.export"
+             class="org.osate.ui.wizards.ExportDocumentationWizard"
+             id="org.osate.ui.wizards.ExportDocumentationWizard"
+             name="Export Documentation">
+       </wizard>
+    </extension>
 </plugin>
