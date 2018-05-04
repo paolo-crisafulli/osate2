@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="org.osate.core.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="org.osate.plugins.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="org.osate.ge.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="org.osate.ge.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="org.osate.core.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="org.osate.plugins.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="org.osate.xtext.aadl2.errormodel.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="org.osate.xtext.aadl2.errormodel.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="org.osate.ocarina.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="org.osate.ocarina.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="org.osate.ba.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="org.osate.utils.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="com.rockwellcollins.atc.agree.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="com.rockwellcollins.atc.resolute.feature">
+      <category name="osate2"/>
+   </feature>
+   <feature id="com.rockwellcollins.atc.agree.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="com.rockwellcollins.atc.resolute.feature.source">
+      <category name="osate2source"/>
+   </feature>
+   <feature id="org.osate.alisa.workbench.sdk">
+      <category name="reqspec"/>
+   </feature>
+   <feature id="org.osate.alisa.workbench.sdk.source">
+      <category name="reqspec"/>
+   </feature>
+   <feature id="edu.cmu.emfta.feature">
+      <category name="emfta"/>
+   </feature>
+   <feature id="edu.cmu.emfta.feature.source">
+      <category name="emfta"/>
+   </feature>
+   <feature id="org.osate.aadl2.errormodel.emfta.feature">
+      <category name="emfta"/>
+   </feature>
+   <feature id="org.osate.aadl2.errormodel.emfta.feature.source">
+      <category name="emfta"/>
+   </feature>
+   <category-def name="osate2" label="OSATE2 for AADL2">
+      <description>
+         OSATE
+      </description>
+   </category-def>
+   <category-def name="osate2source" label="OSATE2 Source Code"/>
+   <category-def name="reqspec" label="ALISA Requirements Specification and Verification"/>
+   <category-def name="emfta" label="EMFTA"/>
+   <repository-reference location="http://download.eclipse.org/epsilon/updates" enabled="true" />
+</site>

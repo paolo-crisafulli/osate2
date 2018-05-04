@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="analysis" name="Analysis" schema="schema/analysis.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.osate.ui.oc1"
+            objectClass="java.lang.Object">
+         <visibility>
+            <or>
+               <and>
+                  <objectClass name="org.eclipse.core.resources.IFile"/>
+                  <objectState name="extension" value="aaxl"/>
+               </and>
+               <objectClass name="org.osate.aadl2.ModelUnit"/>
+            </or>
+         </visibility>
+
+         <menu
+               id="org.osate.ui.popupMenu.Analyses"
+               label="%popupMenu.analyses.label"
+               path="additions">
+            <groupMarker name="anal.grp"/>
+            <groupMarker name="subMenus.grp"/>
+         </menu>
+
+         <menu
+               id="org.aadl.architecture.popupMenu.Semantic"
+               label="%popupMenu.Semantic.label"
+               path="org.osate.ui.popupMenu.Analyses/subMenus.grp">
+            <groupMarker name="anal.grp"/>
+         </menu>
+         
+      </objectContribution>
+
+      <objectContribution
+            id="org.osate.ui.oc2"
+            objectClass="org.eclipse.core.resources.IFile">
+         <visibility>
+            <or>
+               <objectState name="extension" value="*"/>
+               <objectState name="extension" value="aaxl2"/>
+            </or>
+         </visibility>
+         <menu
+               id="org.osate.ui.popupMenu.Aadl"
+               label="%popupMenu.aadl.label"
+               path="additions">
+            <groupMarker name="file.grp"/>
+            <separator name="instance.grp"/>
+            <separator name="general.grp"/>
+            <groupMarker name="subMenus.grp"/>
+         </menu>
+         <action
+               id="org.osate.ui.actions.ResetMarkers.popupAction"
+               label="%ResetMarkers.label"
+               tooltip="%ResetMarkers.toolTip"
+               icon="%ResetMarkers.icon"
+               class="org.osate.ui.actions.ResetMarkers"
+               menubarPath="org.osate.ui.popupMenu.Aadl/general.grp"
+               enablesFor="*"/>
+     </objectContribution>         
+               
+               
+
+      
+      <objectContribution
+            id="org.osate.ui.oc6"
+            objectClass="org.eclipse.core.resources.IProject"
+            adaptable="true">
+         <visibility>
+            <objectState
+                  name="nature"
+                  value="org.osate.core.aadlnature"/>
+         </visibility>
+         <menu
+               id="org.osate.ui.popupMenu.Aadl"
+               label="%popupMenu.aadl.label"
+               path="additions">
+            <groupMarker name="file.grp"/>
+            <separator name="instance.grp"/>
+            <separator name="general.grp"/>
+            <groupMarker name="subMenus.grp"/>
+         </menu>
+         <action
+               class="org.osate.ui.actions.ConversionAction"
+               enablesFor="1"
+               id="org.osate.ui.actions.RemoveAADLNature.popupAction"
+               label="%RemoveAADLNature.label"
+               menubarPath="org.eclipse.ui.projectConfigure/additions"
+               tooltip="%RemoveAADLNature.toolTip"/>
+      </objectContribution>
+      <objectContribution
+            id="org.osate.ui.oc7"
+            objectClass="org.eclipse.core.resources.IProject"
+            adaptable="true">
+         <visibility>
+            <not>
+               <objectState
+                     name="nature"
+                     value="org.osate.core.aadlnature"/>
+            </not>
+         </visibility>
+         <menu
+               id="org.osate.ui.popupMenu.Aadl"
+               label="%popupMenu.aadl.label"
+               path="additions">
+            <groupMarker name="file.grp"/>
+            <separator name="instance.grp"/>
+            <separator name="general.grp"/>
+            <groupMarker name="subMenus.grp"/>
+         </menu>
+         <action
+               class="org.osate.ui.actions.ConversionAction"
+               enablesFor="1"
+               id="org.osate.ui.actions.EnableAADLNature.popupAction"
+               label="%EnableAADLNature.label"
+               menubarPath="org.eclipse.ui.projectConfigure/additions"
+               tooltip="%EnableAADLNature.toolTip"/>
+      </objectContribution>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.osate.ui.actionSet"
+            label="%actionSet.label"
+            visible="false">
+
+         <menu
+               id="menu.osate"
+               label="%menu.osate.label"
+               path="project">
+            <groupMarker name="file.grp"/>
+            <separator name="instance.grp"/>
+            <separator name="general.grp"/>
+         </menu>
+
+         <menu
+               id="menu.analyses"
+               label="%menu.analyses.label"
+               path="menu.osate">
+            <groupMarker name="top.grp"/>
+            <groupMarker name="bottom.grp"/>
+         </menu>
+
+         <menu
+               id="menu.semantic"
+               label="%menu.semantic.label"
+               path="menu.analyses/top.grp">
+            <groupMarker name="stuff.grp"/>
+         </menu>
+
+
+         
+          
+         <action
+               id="org.osate.ui.actions.ReinstantiateAllAadl.action"
+               label="%ReinstantiateAllModelsAction.label"
+               tooltip="%ReinstantiateAllModelsAction.toolTip"
+               icon="%ReinstantiateAllModelsAction.icon"
+               class="org.osate.ui.actions.ReinstantiateAadl"
+               menubarPath="menu.osate/instance.grp"
+               toolbarPath="OSATE.toolbar/instance.grp"
+               enablesFor="*"/>
+         
+         
+        <action
+               id="org.osate.ui.actions.ClearHistory.action"
+               label="%ClearHistory.label"
+               tooltip="%ClearHistory.toolTip"
+               icon="%ClearHistory.icon"
+               class="org.osate.ui.actions.ClearHistory"
+               menubarPath="menu.osate/general.grp"
+               toolbarPath="OSATE.toolbar/selfDebug.grp"
+               enablesFor="1">
+         </action> 
+         <action
+               id="org.osate.ui.actions.ResetMarkers.action"
+               label="%ResetMarkers.label"
+               tooltip="%ResetMarkers.toolTip"
+               icon="%ResetMarkers.icon"
+               class="org.osate.ui.actions.ResetMarkers"
+               menubarPath="menu.osate/general.grp"
+               toolbarPath="OSATE.toolbar/general.grp"
+               enablesFor="*">
+            <enablement>
+               <and>
+                  <objectClass
+                        name="org.eclipse.core.resources.IFile">
+                  </objectClass>
+                  <objectState
+                        name="extension"
+                        value="*">
+                  </objectState>
+               </and>
+            </enablement>
+         </action>
+      </actionSet>
+   </extension>
+   
+
+   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            id="org.osate.internal.ui.preferences.OsatePreferencePage"
+            name="OSATE Preferences"
+            class="org.osate.internal.ui.preferences.OsatePreferencePage">
+      </page>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.osate.Wizard.category.ID"
+            name="%_Aadl_Wizard_category">
+      </category>
+      <category
+            id="org.osate.Wizard.category.examples"
+            name="AADL Examples"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+      <wizard
+            id="org.osate.ui.wizards.AadlProjectWizardID"
+            name="%_UI_AadlProjectWizard_label"
+            icon="icons/new_aadl_project.gif"
+            category="org.osate.Wizard.category.ID"
+            class="org.osate.ui.wizards.AadlProjectWizard"
+            preferredPerspectives="org.osate.ui.perspective.AadlPerspective"
+            finalPerspective="org.osate.ui.perspective.AadlPerspective"
+            project="true">
+         <description>
+            %_UI_AadlProjectWizard_description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+       <wizard
+            id="org.osate.ui.wizards.NewModelWizardID"
+            name="%_UI_CoreModelWizard_label"
+            icon="icons/aadl.gif"
+            category="org.osate.Wizard.category.ID"
+            class="org.osate.ui.wizards.NewModelWizard"
+                   preferredPerspeves="org.osate.ui.perspective.AadlPerspective"
+            finalPerspective="org.osate.ui.perspective.AadlPerspective"
+            >
+         <description>
+            %_UI_CoreModelWizard_description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+
+   <extension
+         id="UnparseObjectMarker"
+         name="Unparse Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.osate.aadl2.modelsupport.AadlObjectMarker"/>
+      <persistent value="true"/>
+   </extension>
+
+   <extension
+         id="XMLErrorMarker"
+         name="XML Read Error Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.osate.aadl2.modelsupport.AadlObjectMarker"/>
+      <persistent value="true"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+      		id="aadl.view_category"
+      		name="%aadl_view_category.label"/>
+      <view
+      		id="org.osate.ui.navigator.AadlNavigator"
+      		name="AADL Navigator"
+      		icon="icons/aadlNav.gif"
+      		category="aadl.view_category"
+      		class="org.osate.ui.navigator.AadlNavigator"/>
+   </extension>
+   
+	<extension
+         point="org.eclipse.ui.navigator.viewer">
+		<viewerContentBinding 
+            viewerId="org.osate.ui.navigator.AadlNavigator">
+			<includes>
+				<contentExtension pattern="org.eclipse.ui.navigator.resourceContent" />     	      
+				<contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+				<contentExtension pattern="org.osate.ui.navigator.content"/>
+				<contentExtension pattern="org.osate.ui.navigator.AadlNavigatorLinkHelper"/>
+			</includes>
+		</viewerContentBinding>
+  		<viewerActionBinding
+        	viewerId="org.osate.ui.navigator.AadlNavigator">
+     		<includes>
+     			<actionExtension pattern="org.eclipse.ui.navigator.resources.*" />	
+     		</includes>
+	  </viewerActionBinding>
+   </extension>
+
+	<extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent 
+            id="org.osate.ui.navigator.content" 
+            name="AADL Navigator Content"
+            contentProvider="org.osate.ui.navigator.AadlNavigatorContentProvider"
+            labelProvider="org.osate.ui.navigator.AadlNavigatorLabelProvider" 
+            activeByDefault="true"
+            priority="normal" >
+        <triggerPoints>
+            <and>
+               <instanceof value="org.eclipse.core.resources.IResource"/>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.core.resources.extension"
+                     value="properties"/>
+            </and>
+         </triggerPoints>
+         <possibleChildren>
+         	<or>
+         		<instanceof value= "org.osate.aadl2.instance.InstanceObject" />
+         		<instanceof value= "org.osate.aadl2.NamedElement" />
+         	</or>
+         </possibleChildren>
+		<actionProvider
+			class="org.osate.ui.navigator.AadlNavigatorActionGroup">
+		</actionProvider>
+		  <enablement>
+		  </enablement>
+		  
+        <commonSorter
+              class="org.osate.ui.navigator.AadlNavigatorSorter"
+              id="org.osate.ui.navigator.sorter">
+           <parentExpression>
+               <or>
+                 <instanceof
+                       value="org.eclipse.core.resources.IResource">
+                 </instanceof>
+                 <instanceof value="org.osate.aadl2.instance.InstanceObject" />
+                 <instanceof value="org.osate.aadl2.NamedElement" />
+                </or>
+           </parentExpression>
+        </commonSorter>
+      </navigatorContent>
+   </extension>
+   
+   <extension 
+        point="org.eclipse.ui.perspectives"> 
+        <perspective 
+        	id="org.osate.ui.perspective.AadlPerspective"
+            name="AADL" 
+            class="org.osate.ui.perspective.AadlPerspectiveFactory" 
+            icon="icons/aadl.gif"> 
+        </perspective> 
+    </extension>
+    
+    <extension
+    	point="org.eclipse.ui.perspectiveExtensions">
+    	<perspectiveExtension
+    		targetID="org.eclipse.ui.resourcePerspective">
+    		<perspectiveShortcut
+    			id="org.osate.ui.perspective.AadlPerspective"/>
+    	</perspectiveExtension>
+    	<perspectiveExtension
+    		targetID="org.eclipse.team.cvs.ui.cvsPerspective">
+    		<perspectiveShortcut
+    			id="org.osate.ui.perspective.AadlPerspective"/>
+    	</perspectiveExtension>
+    	<perspectiveExtension
+    		targetID="org.eclipse.team.ui.TeamSynchronizingPerspective">
+    		<perspectiveShortcut
+    			id="org.osate.ui.perspective.AadlPerspective"/>
+    	</perspectiveExtension>
+    </extension>
+    
+    <!--extension
+       point="org.eclipse.ui.exportWizards">
+       <wizard
+       	  id="org.osate.ui.wizards.exportTextWizard"
+       	  name="Aadl Text"
+       	  class="org.osate.ui.wizards.AadlTextExportWizard"
+       	  icon="icons/makeaadltext.gif">
+       	  <description>
+       	     Exports an XML AADL Model to AADL Text.
+       	  </description>
+       </wizard>
+    </extension-->
+   <extension
+         id="org.osate.views"
+         point="org.eclipse.ui.views">
+      <category
+      		id="aadl.view_category"
+      		name="%aadl_view_category.label"/>
+      <view
+            category="aadl.view_category"
+            class="org.osate.ui.views.LoggerView"
+            icon="icons/aadl.gif"
+            id="org.osate.ui.logger_view"
+            name="%osate_logger_view.label">
+      </view>
+   </extension>
+   
+   <!--
+     <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            id="org.osate.ui.preferences.ProjectPropertyPage"
+            name="%projectPreferencesPageName"
+            class="org.osate.internal.ui.preferences.ProjectPropertyPage">
+         <filter
+               name="nature"
+               value="org.osate.core.aadlnature">
+         </filter>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.core.resources.IProject">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+   -->
+    <extension
+          point="org.eclipse.ui.navigator.linkHelper">
+       <linkHelper
+             class="org.osate.ui.navigator.AadlNavigatorLinkHelper"
+             id="org.osate.ui.navigator.AadlNavigatorLinkHelper">
+          <selectionEnablement>
+          <or>
+             <instanceof value="org.eclipse.core.resources.IFile"/>
+             <instanceof value="org.osate.aadl2.Classifier"/>
+             <instanceof value="org.osate.aadl2.Property"/>
+             <instanceof value="org.osate.aadl2.PropertyConstant"/>
+             <instanceof value="org.osate.aadl2.PropertyType"/>
+           </or>
+          </selectionEnablement>
+          <editorInputEnablement>
+          <or>
+             <instanceof value="org.eclipse.ui.IFileEditorInput"/>
+           </or>
+          </editorInputEnablement>
+       </linkHelper>
+    </extension>
+
+     <extension
+        point="org.eclipse.ui.newWizards">
+     <wizard
+           category="org.eclipse.ui.Examples/org.osate.Wizard.category.examples"
+           class="org.osate.ui.wizards.AadlExamplesWizard"
+           icon="icons/aadl.gif"
+           id="org.osate.wizard.examples"
+           name="AADL Examples"
+           project="true">
+     </wizard>
+     </extension>
+
+    <extension point="org.eclipse.core.expressions.definitions">
+       <definition id="org.osate.is_aadl_project_propertyset">
+          <adapt type="org.eclipse.core.resources.IResource">
+             <test property="org.eclipse.core.resources.name"
+                  value="AADL_Project.aadl">
+             </test>
+          </adapt>
+       </definition>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="false"
+             locationURI="popup:org.osate.ui.navigator.AadlNavigator">
+          <command
+                commandId="org.osate.ui.setAadlProjectProperties"
+                label="Set as AADL_Project property set"
+                style="push">
+             <visibleWhen>
+                <with variable="selection">
+                   <iterate
+                         ifEmtpy="false">
+                      <reference definitionId="org.osate.is_aadl_project_propertyset"/>
+                   </iterate>
+                </with>
+             </visibleWhen>
+          </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             id="org.osate.ui.setAadlProjectProperties"
+             name="Set as AADL_Project property set">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.handlers">
+       <handler
+             class="org.osate.ui.handlers.SetAadlProjectPropertiesHandler"
+             commandId="org.osate.ui.setAadlProjectProperties">
+       </handler>
+    </extension>
+
+</plugin>
