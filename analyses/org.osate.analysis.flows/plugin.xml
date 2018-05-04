@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.osate.analysis.flows.actionSet"
+            label="%actionSet.label"
+            visible="false">
+
+         <menu
+               id="menu.osate"
+               label="%menu.osate.label"
+               path="project">
+            <groupMarker name="file.grp"/>
+            <separator name="instance.grp"/>
+            <separator name="general.grp"/>
+         </menu>
+
+         <menu
+               id="menu.analyses"
+               label="%menu.analyses.label"
+               path="menu.osate">
+            <groupMarker name="top.grp"/>
+            <groupMarker name="bottom.grp"/>
+         </menu>
+         
+         <action
+               id="org.osate.analysis.flows.actions.CheckFlowLatency.action"
+               label="%CheckFlowLatency.label"
+               tooltip="%CheckFlowLatency.toolTip"
+               icon="%CheckFlowLatency.icon"
+               class="org.osate.analysis.flows.actions.CheckFlowLatency"
+               menubarPath="menu.analyses/top.grp"
+               toolbarPath="org.aadl.architecture.actionSet/arch.toolbar"
+               enablesFor="1">
+            <enablement>
+               <or>
+                  <and>
+                     <objectClass name="org.eclipse.core.resources.IFile"/>
+                     <objectState name="extension" value="aaxl2"/>
+                  </and>
+                  <objectClass name="org.osate.aadl2.instance.SystemInstance"/>
+               </or>
+            </enablement>
+         </action>
+      </actionSet>
+   </extension>
+   
+   <extension
+   	   point="org.eclipse.ui.perspectiveExtensions">
+   	   <perspectiveExtension
+   		   targetID="org.osate.ui.perspective.AadlPerspective">
+   		   <actionSet
+   		 	   id="org.osate.analysis.flows.actionSet"/>
+   	   </perspectiveExtension>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.osate.analysis.flows.oc1"
+            objectClass="java.lang.Object">
+         <visibility>
+            <or>
+               <and>
+                  <objectClass name="org.eclipse.core.resources.IFile"/>
+                  <objectState name="extension" value="aaxl2"/>
+               </and>
+               <objectClass name="org.osate.aadl2.instance.SystemInstance"/>
+            </or>
+         </visibility>
+
+         <menu
+               id="org.osate.ui.popupMenu.Analyses"
+               label="%popupMenu.analyses.label"
+               path="additions">
+            <groupMarker name="anal.grp"/>
+            <groupMarker name="subMenus.grp"/>
+         </menu>
+
+         <action
+               id="org.osate.analysis.flows.actions.CheckFlowLatency.popupAction"
+               label="%CheckFlowLatency.label"
+               tooltip="%CheckFlowLatency.toolTip"
+               icon="%CheckFlowLatency.icon"
+               class="org.osate.analysis.flows.actions.CheckFlowLatency"
+               menubarPath="org.osate.ui.popupMenu.Analyses/anal.grp"
+               enablesFor="1"/>
+      </objectContribution>
+   </extension>
+   
+   <extension
+         id="FlowLatencyObjectMarker"
+         name="Flow Latency Analysis Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.osate.aadl2.modelsupport.AadlObjectMarker"/>
+      <persistent value="true"/>
+   </extension>
+   
+ 	<extension
+         id="org.osate.analysis.flows.partitioning_policy"
+         name="Partioning Policy"
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.osate.analysis.flows.preferences.Initializer">
+      </initializer>
+   </extension>
+      <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.osate.internal.ui.preferences.OsatePreferencePage"
+            class="org.osate.analysis.flows.preferences.Page"
+            id="org.osate.analysis.flows.PreferencePage"
+            name="Flow Analysis">
+      </page>
+   </extension>
+</plugin>
