@@ -11,7 +11,6 @@ import org.eclipse.xtext.findReferences.ReferenceFinder;
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
 
-@SuppressWarnings("restriction")
 public class Aadl2ReferenceFinder extends ReferenceFinder {
 
 	@Inject
