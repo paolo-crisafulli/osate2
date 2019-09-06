@@ -27,7 +27,9 @@ Require-Bundle: org.osate.assure,
  org.osate.xtext.aadl2.properties;bundle-version="1.0.0",
  org.osate.verify;bundle-version="1.0.0",
  org.osate.pluginsupport,
- org.osate.aadl2.instantiation;bundle-version="1.0.0"
+ org.osate.aadl2.instantiation;bundle-version="1.0.0",
+ com.rockwellcollins.atc.resolute,
+ com.rockwellcollins.atc.resolute.analysis
 Import-Package: com.rockwellcollins.atc.resolute;resolution:=optional,
  com.rockwellcollins.atc.resolute.resolute;resolution:=optional,
  org.apache.log4j,
