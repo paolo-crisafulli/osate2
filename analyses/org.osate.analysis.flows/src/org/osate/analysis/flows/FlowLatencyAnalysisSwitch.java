@@ -845,7 +845,7 @@ public class FlowLatencyAnalysisSwitch extends AadlProcessingSwitchWithProgress 
 	}
 
 	public AnalysisResult invoke(EndToEndFlowInstance etef) {
-		return invoke(etef, null, true, true, true, true);
+		return invoke(etef, null, true, true, false, true);
 	}
 
 	/**
